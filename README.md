@@ -1,2 +1,6 @@
 # BugTracker
-A Bug tracking App
+A Bug Logging App/API
+
+
+
+

@@ -1,0 +1,66 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+:root {
+    --columns: 3;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Roboto', sans-serif;
+    background-color: #111;
+    color: goldenrod;
+    display: grid;
+    grid-template-rows: 3.25em auto 5em;
+    overflow: hidden;
+}
+body>header {
+    align-self: center;
+    justify-self: center;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+body>nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+body>nav>* {cursor: pointer;}
+
+#Buggrid {
+    max-width: 100vw;
+    display: grid;
+    grid-template-columns: repeat(var(--columns),min(100vw,30em));
+    overflow-x: scroll;
+}
+
+.logcontain {
+    max-height: calc(100vh - 8.25em);
+    padding: 0 .5em;
+    overflow-y: scroll;
+}
+
+.log{
+    margin: .5em 0;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: darkgoldenrod;
+    color: black;
+    display: grid;
+    grid-template-areas: 
+        'header tag'
+        'header color'
+        'para para';
+}
+.log>header {
+    font-size: x-large;
+    font-weight: 600;
+    grid-area: header;
+}
+.log>h5 {justify-self: end; grid-area: tag;}
+.log>input{justify-self: end; grid-area: color;}
+.log>p{grid-area: para;}
