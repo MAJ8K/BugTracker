@@ -1,7 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 :root {
-    --columns: 3;
+    --columns: 1;
 }
 * {
     box-sizing: border-box;
@@ -42,6 +42,7 @@ body>nav>* {cursor: pointer;}
     max-height: calc(100vh - 8.25em);
     padding: 0 .5em;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .log{
@@ -55,12 +56,97 @@ body>nav>* {cursor: pointer;}
         'header tag'
         'header color'
         'para para';
+    grid-template-columns: auto min-content;
 }
 .log>header {
     font-size: x-large;
     font-weight: 600;
     grid-area: header;
 }
-.log>h5 {justify-self: end; grid-area: tag;}
-.log>input{justify-self: end; grid-area: color;}
+.log>h5 {
+    justify-self: center;
+    grid-area: tag;}
+.log>input{
+    justify-self: end;
+    grid-area: color;
+    justify-self: center;
+    transform: scale(2);
+    clip-path: circle(12.5%);
+}
 .log>p{grid-area: para;}
+
+.Modal{
+    position: fixed;
+    left: calc(50vw - min(96vw,30em)/2);
+    top: 5%;
+    border-radius: 1em;
+    background-color: darkgoldenrod;
+    width: min(96vw,30em);
+    height: 14em;
+    display: grid;
+}
+#addModal{
+    grid-template-areas: 
+        'header tag'
+        'header color'
+        'para para'
+        'sub sub';
+    grid-template-rows: 2em 2em 8em 2em;
+}
+#addModal>*:nth-child(1){
+    margin: 5px 2px;
+    width: 11em;
+    grid-area: header;
+    background-color: transparent;
+    border-radius: 3em;
+    font-size: x-large;
+    font-weight: bold;
+    text-align: center;
+}
+#addModal>*:nth-child(2){
+    margin: 5px 2px;
+    grid-area: tag;
+    width: 9em;
+    background-color: transparent;
+    justify-self: center;
+    text-align: center;
+    border-radius: 2em;
+}
+#addModal>*:nth-child(3){
+    grid-area: color;
+    clip-path: circle(12.5%);
+    background-color: transparent;
+    border-color: transparent;
+    justify-self: center;
+    transform: scale(3);
+}
+#addModal>*:nth-child(4){
+    grid-area: para;
+    background-color: transparent;
+    border-radius: 2em;
+    margin: 2px;
+}
+#addModal>*:nth-child(5){
+    grid-area: sub;
+    border-radius: 2em;
+    background-color: #222;
+    color: goldenrod;
+    font-size: large;
+    margin: 2px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+#overlay{
+    background-color: #000a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: all;
+}
+#overlay.off{
+    pointer-events: none;
+    background-color: #0000;
+}
+.Modal.off{transform: scale(0);}

@@ -8,33 +8,41 @@
     <meta name="theme-color" content="#000">
     <title>MAJ Bug Tracker</title>
     <link rel="stylesheet" href="layout.css">
-    <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="Images/logo192.png">
 </head>
 <body>
     <header>Bug Tracker</header>
     <section id="Buggrid">
         <div class="logcontain">
-            <div class="log">
-                <header>Template</header>
-                <h5>template tag</h5>
-                <input type="color" name="" id="">
-                <p>
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Voluptates, assumenda
-                    eaque nisi praesentium suscipit fugit,
-                    numquam laborum voluptate reprehenderit
-                    aspernatur odit facere et tempore quisquam
-                    adipisci quaerat quibusdam vel non.
-                </p>
-            </div>
         </div>
     </section>
     <nav>
-        <img src="Images/add.png" alt="add">
-        <img src="Images/search.png" alt="filter">
-        <img src="Images/list.png" alt="sort">
+        <img src="Images/add.png" alt="add" onclick="buttonID(this)">
+        <img src="Images/search.png" alt="filter" onclick="buttonID(this)">
+        <img src="Images/list.png" alt="sort" onclick="buttonID(this)">
+        <img src="Images/save.png" alt="save" onclick="buttonID(this)">
     </nav>
+    <div id="overlay" class="off"></div>
+    <div class="Modal off" id="addModal">
+        <input type="text" name="Title">
+        <input type="text" name="Tag">
+        <input type="color" name="Color">
+        <input type="text" name="Paragraph">
+        <input type="submit" onclick="addlog(this.parentElement.children)">
+    </div>
 </body>
-<script src="script.js"></script>
+<div class="log" id="logtemp" style="display: none;">
+    <header>Template</header>
+    <h5>template tag</h5>
+    <input type="color" name="" id="">
+    <p>
+        Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Voluptates, assumenda
+        eaque nisi praesentium suscipit fugit,
+        numquam laborum voluptate reprehenderit
+        aspernatur odit facere et tempore quisquam
+        adipisci quaerat quibusdam vel non.
+    </p>
+</div>
+<script defer src="script.js"></script>
 </html>
