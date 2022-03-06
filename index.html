@@ -10,53 +10,59 @@
 	<script src="script.js" defer></script>
 	<title>Document</title>
 </head>
-<body>
+<body class="col-secondary">
+<h1 class="container-fluid p-2 H-text text-center">
+	Bug Log
+</h1>
+<!-- Logs -->
+<main class="container"></main>
+<div class="container" style="height: 100px;"></div>
 <!-- Modals -->
 <div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+	<div class="modal-dialog">
+		<div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Profile</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Profile</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
 
-      <!-- Modal body -->
+			<!-- Modal body -->
 			<form action="" class="modal-body">
 				<div class="row">
 					<div class="col">
 						<label for="p-col">Primary Color</label>
-						<input type="color" class="form-control mt-4" name="p-col">
+						<input type="color" id="p-col" class="form-control h-75" name="p-col">
 					</div>
 					<div class="col">
 						<label for="s-col">Secondary Color</label>
-						<input type="color" class="form-control mt-4" name="s-col">
+						<input type="color" id="s-col" class="form-control h-75" name="s-col">
 					</div>
 				</div>
 			</form>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Apply</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      </div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick="applyProfile()" data-bs-dismiss="modal">Apply</button>
+				<button type="button" class="btn btn-danger" onclick="revertProfile()" data-bs-dismiss="modal">Cancel</button>
+			</div>
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 <!-- ADD -->
 <div class="modal" id="AddModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+	<div class="modal-dialog">
+		<div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Add Item</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Add Item</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
 
-      <!-- Modal body -->
+			<!-- Modal body -->
 			<form action="" class="modal-body">
 				<div class="row">
 					<div class="col">
@@ -66,7 +72,7 @@
 						</div>
 					</div>
 					<div class="col-3">
-						<input type="color" class="form-control mt-4" name="col">
+						<input type="color" class="form-control h-50 mt-3" id="col" name="col">
 					</div>
 				</div>
 				<div class="form-floating">
@@ -75,27 +81,27 @@
 				</div>
 			</form>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Submit</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Trash</button>
-      </div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="addLog(); clearAdd()">Submit</button>
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="clearAdd()">Cancel</button>
+			</div>
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 <!-- SORT -->
 <div class="modal" id="SortModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+	<div class="modal-dialog">
+		<div class="modal-content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Sort</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title">Sort</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
 
-      <!-- Modal body -->
+			<!-- Modal body -->
 			<form action="" class="modal-body">
 				<select class="form-select form-select-lg">
 					<option>Title</option>
@@ -103,39 +109,55 @@
 					<option>Comment</option>
 				</select>
 				<div class="form-check">
-					<input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1">Alpha(A-Z)
+					<input type="radio" class="form-check-input" id="azalgo" name="optradio" value="option1">Alpha(A-Z)
 				</div>
 				<div class="form-check">
-					<input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Alpha(Z-A)
+					<input type="radio" class="form-check-input" id="zaalgo" name="optradio" value="option2">Alpha(Z-A)
 				</div>
 				<div class="form-check">
-					<input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3">Find 
-					<input type="text" class="form-control" id="entry" placeholder="Find" name="entry">
+					<input type="radio" class="form-check-input" id="falgo" name="optradio" value="option3">Find 
+					<input type="text" class="form-control" id="fitem" placeholder="Find" name="entry">
 				</div>
 			</form>
 
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Apply</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-      </div>
+			<!-- Modal footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick="sortLogs();revertSort()" data-bs-dismiss="modal">Apply</button>
+				<button type="button" class="btn btn-danger" onclick="revertSort();" data-bs-dismiss="modal">Cancel</button>
+			</div>
 
-    </div>
-  </div>
+		</div>
+	</div>
 </div>
 <!-- Menu Buttons -->
 <nav class="navbar navbar-expand-sm fixed-bottom">
 	<div class="btn-group mx-auto my-1">
-		<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#myModal">
+		<button type="button" class="btn col-primary"  data-bs-toggle="modal" data-bs-target="#myModal">
 			<img src="Images/edit.png" class="icon img-fluid" alt="">
 		</button>
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddModal">
+		<button type="button" class="btn col-primary" data-bs-toggle="modal" data-bs-target="#AddModal">
 			<img src="Images/add.png" class="icon img-fluid" alt="">
 		</button>
-		<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#SortModal">
+		<button type="button" class="btn col-primary" data-bs-toggle="modal" data-bs-target="#SortModal">
 			<img src="Images/sort.png" class="icon img-fluid" alt="">
 		</button>
 	</div>
 </nav>
 </body>
+<template id="logTemplate">
+	<div class="card m-1">
+		<div class="card-header">
+			<div class="row">
+				<h3 class="col">Test Title</h3>
+				<div class="col-3 me-2 rounded-2"
+				style="width: 48px; height: 48px;"></div>
+			</div>
+		</div>
+		<div class="card-body">Comment</div>
+		<div class="card-footer">
+			<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Edit</button>
+			<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+		</div>
+	</div>
+</template>
 </html>

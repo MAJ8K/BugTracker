@@ -1,1 +1,12 @@
+:root{
+    --col-primary: goldenrod;
+    --col-secondary: #222;
+}
+.col-primary{
+    background-color: var(--col-primary);
+}
+.col-secondary{
+    background-color: var(--col-secondary);
+}
+.H-text{color: var(--col-primary);}
 .icon{ height: 64px;}
