@@ -67,7 +67,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="form-floating mb-3 mt-3">
-							<input type="text" class="form-control" id="title" placeholder="Enter Title" name="title">
+							<input type="text" class="form-control" maxlength="20" id="title" placeholder="Enter Title" name="title">
 							<label for="title">Title</label>
 						</div>
 					</div>
@@ -76,7 +76,7 @@
 					</div>
 				</div>
 				<div class="form-floating">
-					<textarea class="form-control" style="min-height:100px;" id="comment" name="text" placeholder="Comment goes here"></textarea>
+					<textarea class="form-control" maxlength="210" style="min-height:100px;" id="comment" name="text" placeholder="Comment goes here"></textarea>
 					<label for="comment">Comments</label>
 				</div>
 			</form>
@@ -155,8 +155,8 @@
 		</div>
 		<div class="card-body">Comment</div>
 		<div class="card-footer">
-			<button type="button" class="btn btn-warning" data-bs-dismiss="modal">Edit</button>
-			<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Delete</button>
+			<button type="button" class="btn btn-warning disabled" data-bs-dismiss="modal">Edit</button>
+			<button type="button" class="btn btn-danger" onclick="trashlog(this)" data-bs-dismiss="modal">Delete</button>
 		</div>
 	</div>
 </template>

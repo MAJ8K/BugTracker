@@ -1,7 +1,9 @@
-var r = document.querySelector(':root');
-var menubtns = document.getElementsByClassName('nav-link');
-var mainsect = document.getElementsByTagName('main')[0];
-var templog = document.getElementById('logTemplate');
+const r = document.querySelector(':root');
+const menubtns = document.getElementsByClassName('nav-link');
+const mainsect = document.getElementsByTagName('main')[0];
+const templog = document.getElementById('logTemplate');
+const jwt = location.href.split('#')[1];
+const token = jwt.split(/=|&/)[3];
 var addModal = {
 	title: document.getElementById('title'),
 	color: document.getElementById('col'),
@@ -19,6 +21,59 @@ var sortModal = {
 	FINDITEM: document.getElementById('fitem'),
 };
 
+//////////// utility Functions \\\\\\\\\\\\\\
+function newLog(){
+	mainsect.appendChild(templog.content.cloneNode(true));
+	return mainsect.lastElementChild;
+}
+/////////// BackendFunctionality ///////////
+
+let jtable = undefined;
+if (jwt != undefined){
+	fetch('https://f11dub94fg.execute-api.us-east-1.amazonaws.com/Production/',{
+		headers:{
+			'Authorization':token,
+		}
+	})
+	.then(item => {
+		return item.text();
+	})
+	.then(populate_site)
+	.catch(console.error);
+}
+
+function populate_site(data) {
+	jtable = JSON.parse(data);
+	for (const i in jtable) {
+		var log = jtable[i];
+		if (log[0] == log[1] == log[2] == log[3]) continue;
+		const elem = newLog();
+		var titleArea = elem.children[0].children[0].children[0];
+		var colorArea = elem.children[0].children[0].children[1];
+		var commArea = elem.children[1];
+		titleArea.innerText = log[0];
+		// tagArea.innerText = log[1];
+		var color = log[2];
+		if (log[2].length == 4)
+			color = '#' + log[2][1] + log[2][1] + log[2][2] + log[2][2] + log[2][3] + log[2][3];
+		colorArea.style.backgroundColor = color;
+		commArea.innerText = log[3];
+		elem.children[2].children[1].value = i;
+	}
+}
+
+function savedata() {
+	fetch('https://f11dub94fg.execute-api.us-east-1.amazonaws.com/Production/',{
+		method:'PUT',
+		body:JSON.stringify(jtable),
+		headers:{
+			'Authorization':token,
+		}
+	});
+}
+
+/////////// FrontendFunctionality ///////////
+
 for (const btn of menubtns) {
 	btn.addEventListener('click',e => {
 		for (const i of menubtns) {
@@ -29,14 +84,16 @@ for (const btn of menubtns) {
 }
 
 function addLog() {
-	var clon = templog.content.cloneNode(true);
-	mainsect.appendChild(clon);
-	clon = mainsect.lastElementChild;
+	var clon = newLog();
 	var titleArea = clon.children[0].children[0].children[0];
 	var colorArea = clon.children[0].children[0].children[1];
+	var commArea = clon.children[1];
 	titleArea.innerText = addModal.title.value;
 	colorArea.style.backgroundColor = addModal.color.value;
-	clon.children[1].innerText = addModal.comment.value;
+	commArea.innerText = addModal.comment.value;
+
+	jtable.push([titleArea.innerText,'',addModal.color.value,commArea.innerText]);
+	savedata();
 }
 function clearAdd(){
 	addModal.color.value = '#000';
@@ -55,7 +112,7 @@ function revertProfile(){
 }
 
 function sortLogs(){
-	console.log('here');
+	console.log('There is no sort function');
 
 }
 function revertSort() {
@@ -63,4 +120,12 @@ function revertSort() {
 	sortModal.ZA.checked = false;
 	sortModal.FIND.checked = false;
 	sortModal.FINDITEM.value = '';
+}
+
+function trashlog(id) {
+	let log = id.parentElement.parentElement;
+	log.remove();
+	jtable[id.value] = ['','','',''];
+	console.log(jtable[id.value]);
+	savedata();
 }
